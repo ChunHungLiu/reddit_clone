@@ -1,11 +1,10 @@
-== README
+== Reddit On Rails
+= A Reddit Clone Built With The Popular Ruby On Rails Framework
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Built for fun.
 
-Things you may want to cover:
-
-* Ruby version
+Ruby version: 2.0.0
+Rails version: 4.0.0
 
 * System dependencies
 
@@ -21,8 +20,3 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
