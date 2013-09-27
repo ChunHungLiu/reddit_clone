@@ -4,7 +4,7 @@
 
 <% @posts.each do |post| %>
 
-	<%= post.title %><br>
+	<%= link_to post.title, post_path(post) %><br>
 
 <% end %>
 
