@@ -4,15 +4,17 @@ class PostsController < ApplicationController
 	end
 
 	def show
-		
+
 	end
 
 	def create
-
+		@post = Post.new
+		@post.update_attributes!(params[:post].permit(:title,:body))
+		redirect_to root_url
 	end
 
 	def new
-
+		@post = Post.new
 	end
 
 	def update
@@ -25,5 +27,11 @@ class PostsController < ApplicationController
 
 	def destroy
 
+	end
+
+	private
+
+	def post_params
+		params.require(:post).permit(:title,:body)
 	end
 end
