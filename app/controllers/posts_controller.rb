@@ -1,10 +1,13 @@
 class PostsController < ApplicationController
+	
+	before_action :find_post, only: [:show, :update, :edit]
+
 	def index
 		@posts = Post.all
 	end
 
 	def show
-		@post = Post.find(params[:id])
+
 	end
 
 	def create
@@ -18,7 +21,8 @@ class PostsController < ApplicationController
 	end
 
 	def update
-
+		@post.update_attributes!(params[:post].permit(:title,:body))
+		redirect_to root_url
 	end
 
 	def edit
@@ -30,6 +34,10 @@ class PostsController < ApplicationController
 	end
 
 	private
+
+	def find_post 
+		@post = Post.find(params[:id])
+	end
 
 	def post_params
 		params.require(:post).permit(:title,:body)
