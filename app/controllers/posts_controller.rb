@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
 	def create
 		@post = Post.new
+		@post.votes = 1;
 		@post.update_attributes!(params[:post].permit(:title,:body))
 		redirect_to root_url
 	end
