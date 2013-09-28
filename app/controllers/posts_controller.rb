@@ -11,9 +11,11 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@post = Post.new
+		@post = Post.new(params[:post].permit(:title,:body,:user_id))
 		@post.votes = 1;
-		@post.update_attributes!(params[:post].permit(:title,:body))
+		@post.user_id = current_user.id
+		@post.save
+		
 		redirect_to root_url
 	end
 
