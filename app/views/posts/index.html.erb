@@ -1,10 +1,20 @@
 <h1>Posts Index</h1>
-
+<% if current_user %>
+	Logged in as <%= current_user.email %>.
+<% end %>
 <p>This is where the posts go.</p>
 
 <% @posts.each do |post| %>
 
-	<%= post.votes %> | <%= link_to post.title, post_path(post) %><br>
+	<%= post.votes %> | 
+	<% if post.user_id == current_user.id %>
+		<b>
+	<% end %>
+	<%= link_to post.title, post_path(post) %>
+	<% if post.user_id == current_user.id %>
+		</b>
+	<% end %>
+	<br>
 
 <% end %>
 
