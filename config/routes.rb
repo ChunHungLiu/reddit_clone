@@ -7,7 +7,12 @@ RedditClone::Application.routes.draw do
   # root 'welcome#index'
   root 'posts#index'
 
-  resources :posts
+  resources :posts do
+    member do
+      get 'upvote'
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

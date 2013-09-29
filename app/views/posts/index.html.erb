@@ -6,7 +6,9 @@
 
 <% @posts.each do |post| %>
 
-	<%= post.votes %> | 
+	<%= post.votes %>
+	<%= link_to 'Upvote', upvote_post_path(post) %>
+	|
 	<% if post.user_id == current_user.id %>
 		<b>
 	<% end %>
