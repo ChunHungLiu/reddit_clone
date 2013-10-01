@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
 	
-	before_action :find_post, only: [:show, :update, :edit, :destroy, :upvote, :downvote]
+	before_action :find_post, only: [:show, :update, :edit, :destroy, :upvote, :downvote, :sidevote]
 
-	before_action :find_vote, only: [:upvote, :downvote]
+	before_action :find_vote, only: [:upvote, :downvote, :sidevote]
 
 	def index
 		@posts = Post.all
@@ -84,7 +84,19 @@ class PostsController < ApplicationController
 	end
 
 	def sidevote
+		if @vote == nil
+			# do nothing
+		else
+			if @vote.upvote
+				@post.votes -= 1
+			elsif @vote.upvote == false
+				@post.votes += 1
+			end
+			@post.save
+			@vote.destroy
+		end
 
+		redirect_to root_path
 	end
 
 	private
