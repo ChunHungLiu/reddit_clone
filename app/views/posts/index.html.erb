@@ -1,12 +1,18 @@
 <h1>Posts Index</h1>
+
 <% if current_user %>
 	Logged in as <%= current_user.email %>.
+	<%= link_to 'Sign out', destroy_user_session_path, {method: :delete} %>
+<% else %>
+	<%= link_to 'Sign in', new_user_session_path %>
 <% end %>
 <p>This is where the posts go.</p>
 
 <% @posts.each do |post| %>
 
-	<% @vote = current_user.votes.find_by({post_id: post.id}) %>
+	<% if current_user
+		@vote = current_user.votes.find_by({post_id: post.id}) 
+	end %>
 
 	<%= post.votes %>
 
@@ -22,11 +28,11 @@
 	
 	|
 	
-	<% if post.user_id == current_user.id %>
+	<% if current_user && post.user_id == current_user.id %>
 		<b>
 	<% end %>
 	<%= link_to post.title, post_path(post) %>
-	<% if post.user_id == current_user.id %>
+	<% if current_user && post.user_id == current_user.id %>
 		</b>
 	<% end %>
 	<br>
