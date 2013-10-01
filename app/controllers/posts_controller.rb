@@ -11,8 +11,8 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@post = Post.new(params[:post].permit(:title,:body,:user_id))
-		@post.votes = 1;
+		@post = Post.new(params[:post].permit(:title,:body))
+		@post.votes = 0;
 		@post.user_id = current_user.id
 		@post.save
 		
@@ -38,8 +38,19 @@ class PostsController < ApplicationController
 	end
 
 	def upvote
-		@post.votes += 1
-		@post.save
+
+		#if (current_user.votes.find_by(:post_id) == @post.id) == nil
+
+		if (current_user.votes.find_by(:post_id => @post.id) == nil)
+			@post.votes += 1
+			@vote = Vote.new
+			@vote.upvote = true;
+			@vote.post_id = @post.id
+			@vote.user_id = current_user.id
+			@post.save
+			@vote.save
+		end
+		#end
 		redirect_to root_path
 	end
 
