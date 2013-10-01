@@ -5,7 +5,8 @@ class PostsController < ApplicationController
 	before_action :find_vote, only: [:upvote, :downvote, :sidevote]
 
 	def index
-		@posts = Post.all
+		@posts = Post.order(:votes).reverse
+
 	end
 
 	def show
