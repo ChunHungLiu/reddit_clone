@@ -46,3 +46,6 @@ end
 
 # Use devise
 gem 'devise'
+
+#Use RSpec
+# gem 'rspec'
