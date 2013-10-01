@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
 	
-	before_action :find_post, only: [:show, :update, :edit, :destroy, :upvote]
+	before_action :find_post, only: [:show, :update, :edit, :destroy, :upvote, :downvote]
+
+	before_action :find_vote, only: [:upvote, :downvote]
 
 	def index
 		@posts = Post.all
@@ -39,22 +41,65 @@ class PostsController < ApplicationController
 
 	def upvote
 
-		#if (current_user.votes.find_by(:post_id) == @post.id) == nil
-
-		if (current_user.votes.find_by(:post_id => @post.id) == nil)
-			@post.votes += 1
+		if @vote == nil
 			@vote = Vote.new
-			@vote.upvote = true;
 			@vote.post_id = @post.id
 			@vote.user_id = current_user.id
-			@post.save
-			@vote.save
 		end
-		#end
+
+		if vote_is_new(@vote)
+			@post.votes += 1
+			@vote.upvote = true
+		elsif @vote.upvote == false
+			@post.votes += 2
+			@vote.upvote = true			
+		end
+
+		@post.save
+		@vote.save
+
 		redirect_to root_path
 	end
 
+	def downvote
+
+		if @vote == nil
+			@vote = Vote.new
+			@vote.post_id = @post.id
+			@vote.user_id = current_user.id
+		end
+
+		if vote_is_new(@vote)
+			@post.votes -= 1
+			@vote.upvote = false	
+		elsif @vote.upvote == true
+			@post.votes -= 2
+			@vote.upvote = false			
+		end
+
+		@post.save
+		@vote.save
+
+		redirect_to root_path
+	end
+
+	def sidevote
+
+	end
+
 	private
+
+	def find_vote
+		@vote = current_user.votes.find_by(:post_id => @post.id)
+	end
+
+	def vote_is_new(vote)
+		if vote.upvote == nil
+			true
+		else
+			false
+		end
+	end
 
 	def find_post 
 		@post = Post.find(params[:id])

@@ -10,6 +10,7 @@ RedditClone::Application.routes.draw do
   resources :posts do
     member do
       get 'upvote'
+      get 'downvote'
     end
   end
 
