@@ -85,7 +85,7 @@ class PostsController < ApplicationController
 
 	def sidevote
 		if @vote == nil
-			# do nothing
+			@vote.destroy
 		else
 			if @vote.upvote
 				@post.votes -= 1
