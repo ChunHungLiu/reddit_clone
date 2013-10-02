@@ -6,8 +6,9 @@
 <h2>Comments</h2>
 <% @post.comments.each do |comment| %>
 	<p>
-		<%= comment.votes %>
-		<%= comment.body %>
+		<%= comment.votes %> |
+		<%= comment.body %><br>
+		By <%= comment.user.email %>
 	</p>
 <% end %>
 

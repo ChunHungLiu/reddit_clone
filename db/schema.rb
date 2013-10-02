@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20131001212456) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
-    t.integer  "votes"
+    t.integer  "votes",      default: 0, null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

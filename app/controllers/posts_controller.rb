@@ -13,7 +13,6 @@ class PostsController < ApplicationController
 
 	def create
 		@post = Post.new(params[:post].permit(:title,:body))
-		@post.votes = 0;
 		@post.user_id = current_user.id
 		@post.save
 		
