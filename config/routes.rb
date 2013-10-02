@@ -8,15 +8,15 @@ RedditClone::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'posts#index'
 
+  resources :posts, :comments do
+    resources :comments
+  end  
+
   resources :comments
 
   get '/posts/:id/upvote', to: 'votes#upvote', as: 'upvote_post'
   get '/posts/:id/sidevote', to: 'votes#sidevote', as: 'sidevote_post'
   get '/posts/:id/downvote', to: 'votes#downvote', as: 'downvote_post'
-
-  resources :posts, :comments do
-    resources :comments
-  end  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
