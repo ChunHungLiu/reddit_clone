@@ -67,7 +67,7 @@ class VotesController < ApplicationController
 	private
 
 	def find_item
-		@post = Post.find(params[:post_id])
+		@post = Post.find(params[:id])
 	end
 
 	def find_vote
