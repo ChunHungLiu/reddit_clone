@@ -1,4 +1,5 @@
 RedditClone::Application.routes.draw do
+
   
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -7,18 +8,18 @@ RedditClone::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'posts#index'
 
-resources :comments
+  resources :comments
 
-  resources :posts do
+  resources :posts, :comments do
     resources :comments
-    member do
-      get 'upvote'
-      get 'downvote'
-      get 'sidevote'
+    resources :votes do
+      member do
+        get 'upvote'
+        get 'downvote'
+        get 'sidevote'
+      end
     end
-  end
-
-  
+  end  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

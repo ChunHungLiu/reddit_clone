@@ -17,13 +17,13 @@
 	<%= post.votes %>
 
 	<% if @vote && @vote.upvote %><b><% end %>
-		<%= link_to 'Upvote', upvote_post_path(post) %>
+		<%= link_to 'Upvote', upvote_post_vote_path(post,@vote) %>
 	<% if @vote && @vote.upvote %></b><% end %>
 
-	<%= link_to 'Sidevote', sidevote_post_path(post) %>
+	<%= link_to 'Sidevote', sidevote_post_vote_path(post,@vote) %>
 
 	<% if @vote && !@vote.upvote %><b><% end %>
-		<%= link_to 'Downvote', downvote_post_path(post) %>
+		<%= link_to 'Downvote', downvote_post_vote_path(post,@vote) %>
 	<% if @vote && !@vote.upvote %></b><% end %>
 	
 	|

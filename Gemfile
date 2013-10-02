@@ -48,4 +48,4 @@ end
 gem 'devise'
 
 #Use RSpec
-# gem 'rspec'
+gem 'rspec'
