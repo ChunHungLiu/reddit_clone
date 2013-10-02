@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
-  before_action :find_comment, only: [:edit, :update]
-  before_action :find_post, only: [:new, :create, :update, :edit]
+  before_action :find_comment, only: [:edit, :update, :destroy]
+  before_action :find_post, only: [:new, :create, :update, :edit, :destroy]
 
   def index
 
@@ -24,12 +24,17 @@ class CommentsController < ApplicationController
   end
 
   def edit
-  	
+
   end
 
   def update
   	@comment.update_attributes!(params[:comment].permit(:body))
   	@comment.save
+  	redirect_to @post
+  end
+
+  def destroy
+  	@comment.destroy
   	redirect_to @post
   end
 

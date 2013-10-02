@@ -13,6 +13,7 @@
 
 		<% if current_user.id == comment.user.id %>
 			<%= link_to 'Edit', edit_post_comment_path(@post,comment) %>
+			<%= link_to 'Delete', post_comment_path(@post,comment), method: :delete %>
 		<% end %>
 
 	</p>
