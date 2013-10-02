@@ -12,8 +12,6 @@ RedditClone::Application.routes.draw do
     resources :comments
   end  
 
-  resources :comments
-
   get '/posts/:id/upvote', to: 'votes#upvote', as: 'upvote_post'
   get '/posts/:id/sidevote', to: 'votes#sidevote', as: 'sidevote_post'
   get '/posts/:id/downvote', to: 'votes#downvote', as: 'downvote_post'
