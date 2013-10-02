@@ -8,6 +8,7 @@
 	<p>
 		<%= comment.votes %> |
 		<%= comment.body %><br>
+		Posted at <%= l comment.created_at, format: :short %><br>
 		By <%= comment.user.email %>
 
 		<% if current_user.id == comment.user.id %>
