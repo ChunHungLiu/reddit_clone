@@ -49,7 +49,6 @@ class VotesController < ApplicationController
 	end
 
 	def sidevote
-
 		if @vote.upvote
 			@post.votes -= 1
 		elsif @vote.upvote == false
