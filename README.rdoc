@@ -1,6 +1,8 @@
 == Reddit On Rails
 = A Reddit Clone Built With The Popular Ruby On Rails Framework
 
+= Very much still a work in progress. The focus has been on the functionality as opposed to trying to make it look pretty... for now.
+
 Built for fun.
 
 Ruby version: 2.0.0
