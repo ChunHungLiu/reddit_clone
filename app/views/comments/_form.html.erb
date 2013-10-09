@@ -3,5 +3,7 @@
 	<%= f.label :body %>:
 	<%= f.text_field :body %><br>
 
+	<%= hidden_field_tag(:comment_id, @comment_id) %>
+
 	<%= f.submit %>
 <% end %>

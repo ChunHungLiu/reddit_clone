@@ -8,6 +8,8 @@ RedditClone::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'posts#index'
 
+  #get '/posts/:post_id/comments/:id', to: 'comments#create', 
+
   resources :posts, :comments do
     resources :comments
   end  

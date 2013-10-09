@@ -4,7 +4,6 @@ class PostsController < ApplicationController
 
 	def index
 		@posts = Post.order(:votes).reverse
-
 	end
 
 	def show

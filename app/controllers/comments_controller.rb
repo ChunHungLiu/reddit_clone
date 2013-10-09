@@ -13,12 +13,16 @@ class CommentsController < ApplicationController
 
   def new
   	@comment = Comment.new
+    @comment_id = params[:comment_id]
   end
 
   def create
   	@comment = @post.comments.build(params[:comment].permit(:body))
   	@comment.user_id = current_user.id
-  	@comment.post_id = params[:post_id]
+    # if there is a comment then add that too
+    if params[:comment_id]
+      @comment.comment_id = params[:comment_id]
+    end
   	@comment.save
   	redirect_to @post
   end

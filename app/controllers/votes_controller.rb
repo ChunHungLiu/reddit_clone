@@ -49,17 +49,14 @@ class VotesController < ApplicationController
 	end
 
 	def sidevote
-		if @vote == nil
-			@vote.destroy
-		else
-			if @vote.upvote
-				@post.votes -= 1
-			elsif @vote.upvote == false
-				@post.votes += 1
-			end
-			@post.save
-			@vote.destroy
+
+		if @vote.upvote
+			@post.votes -= 1
+		elsif @vote.upvote == false
+			@post.votes += 1
 		end
+		@post.save
+		@vote.destroy
 
 		redirect_to root_path
 	end
