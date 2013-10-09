@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 	end
 
 	def show
-		@comments = Comment.where(post_id: @post.id, comment_id: nil)
+
 	end
 
 	def create

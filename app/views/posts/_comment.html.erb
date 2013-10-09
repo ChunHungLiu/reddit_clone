@@ -1,0 +1,20 @@
+<%= comment.votes %> |
+<%= comment.body %><br>
+Posted at <%= l comment.created_at, format: :short %><br>
+By <%= comment.user.email %>
+
+<% if current_user.id == comment.user.id %>
+	<%= link_to 'Edit', edit_post_comment_path(@post,comment) %>
+	<%= link_to 'Delete', post_comment_path(@post,comment), method: :delete %>
+<% end %>
+<%= link_to 'Reply', { controller: 'comments', action: :new, comment_id: comment.id, post_id: @post.id } %>
+
+
+<% # Comments comments and comments comments comments etc. %>
+<% if item_comments(comment) %>
+	<% item_comments(comment).each do |comment| %>
+		<p>
+			<%= render 'comment', comment: comment %>
+		</p>
+	<% end %>
+<% end %>	
