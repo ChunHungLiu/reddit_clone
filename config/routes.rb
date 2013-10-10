@@ -18,6 +18,10 @@ RedditClone::Application.routes.draw do
   get '/posts/:id/sidevote', to: 'votes#sidevote', as: 'sidevote_post'
   get '/posts/:id/downvote', to: 'votes#downvote', as: 'downvote_post'
 
+  get '/comments/:id/upvote', to: 'votes#upvote', as: 'upvote_comment'
+  get '/comments/:id/sidevote', to: 'votes#sidevote', as: 'sidevote_comment'
+  get '/comments/:id/downvote', to: 'votes#downvote', as: 'downvote_comment'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

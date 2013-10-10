@@ -8,19 +8,19 @@ class VotesController < ApplicationController
 
 		if @vote == nil
 			@vote = Vote.new
-			@vote.post_id = @post.id
+			@vote.item_id = @item.id
 			@vote.user_id = current_user.id
 		end
 
 		if vote_is_new(@vote)
-			@post.votes += 1
+			@item.votes += 1
 			@vote.upvote = true
 		elsif @vote.upvote == false
-			@post.votes += 2
+			@item.votes += 2
 			@vote.upvote = true			
 		end
 
-		@post.save
+		@item.save
 		@vote.save
 
 		redirect_to root_path
@@ -63,11 +63,21 @@ class VotesController < ApplicationController
 	private
 
 	def find_item
-		@post = Post.find(params[:id])
+		if params[:type] == 'post'
+			@item = Post.find(params[:id])
+		elsif params[:type] == 'comment'
+			@item = Comment.find(params[:id])
+		else
+			throw 'error'
+		end
 	end
 
 	def find_vote
-		@vote = current_user.votes.find_by(:post_id => @post.id)
+		if @item.is_a?Post
+			@vote = current_user.votes.find_by(:item_id => @item.id, type: 'post')
+		elsif @item.is_a?Comment
+			@vote = current_user.votes.find_by(:item_id => @item.id, type: 'comment')
+		end
 	end
 
 	def vote_is_new(vote)
