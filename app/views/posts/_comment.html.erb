@@ -1,4 +1,7 @@
-<%= comment.votes %> | <%= link_to 'Upvote', {controller: :votes, action: :upvote, id: comment.id, type: :comment } %> <br>
+<%= comment.votes %> | 
+<%= link_to 'Upvote', { controller: :votes, action: :upvote, post_id: post.id, comment_id: comment.id, type: :comment } %><br>
+<%= link_to 'Sidevote', { controller: :votes, action: :sidevote, post_id: post.id, comment_id: comment.id, type: :comment } %><br>
+<%= link_to 'Downvote', { controller: :votes, action: :downvote, post_id: post.id, comment_id: comment.id, type: :comment } %><br>
 <%= comment.body %><br>
 Posted at <%= l comment.created_at, format: :short %><br>
 By <%= comment.user.email %>
@@ -14,7 +17,7 @@ By <%= comment.user.email %>
 <% if item_comments(comment) %>
 	<% item_comments(comment).each do |comment| %>
 		<p>
-			<%= render 'comment', comment: comment %>
+			<%= render 'comment', post: post, comment: comment %>
 		</p>
 	<% end %>
 <% end %>	

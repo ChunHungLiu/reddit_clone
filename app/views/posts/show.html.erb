@@ -6,7 +6,7 @@
 <h2>Comments</h2>
 <% item_comments(@post).each do |comment| %>
 	<p>
-		<%= render 'comment', comment: comment %>
+		<%= render 'comment', post: @post, comment: comment %>
 	</p>
 <% end %>
 
