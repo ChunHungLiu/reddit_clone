@@ -48,4 +48,6 @@ end
 gem 'devise'
 
 #Use RSpec
-gem 'rspec'
+group :test, :development do
+	gem 'rspec-rails'
+end
