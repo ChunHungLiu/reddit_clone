@@ -11,7 +11,7 @@
 <% @posts.each do |post| %>
 
 	<% if current_user
-		@vote = current_user.votes.find_by({item_id: post.id})
+		@vote = current_user.votes.find_by({item_id: post.id, item_type: 'post'})
 		#if !@vote
 			#@vote = Vote.new
 		#end
@@ -21,7 +21,7 @@
 
 	<% if @vote and @vote.upvote %><b><% end %>
 		<% # link_to 'Upvote', upvote_post_path(post), {type: :post} %>
-		<%= link_to 'Upvote', { controller: 'votes', action: :upvote, post_id: post.id, type: :post } %>
+		<%= link_to 'Upvote', { controller: 'votes', action: :upvote, post_id: post.id, type: :post }, { onclick: '//alert("hello")' } %>
 	<% if @vote and @vote.upvote %></b><% end %>
 
 	<%= link_to 'Sidevote', sidevote_post_path(post) %>
