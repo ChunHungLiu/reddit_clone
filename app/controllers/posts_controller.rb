@@ -4,6 +4,12 @@ class PostsController < ApplicationController
 
 	def index
 		@posts = Post.order(:votes).reverse
+		@votes = {}
+		if current_user
+			@posts.each do |post|
+				@votes[post.id] = current_user.votes.find_by({item_id: post.id, item_type: 'post'})
+			end
+		end
 	end
 
 	def show
