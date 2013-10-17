@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 	
 	before_action :find_post, only: [:show, :update, :edit, :destroy]
+	before_action :find_vote, only: :show
 
 	def index
 		@posts = Post.order(:votes).reverse
@@ -45,9 +46,17 @@ class PostsController < ApplicationController
 
 	private
 
+
+
 	def find_post 
 		@post = Post.find(params[:id])
 	end
+
+	def find_vote
+		if current_user
+			@vote = current_user.votes.find_by(item_id: @post.id, item_type: 'post')
+		end
+	end	
 
 	def post_params
 		params.require(:post).permit(:title,:body)

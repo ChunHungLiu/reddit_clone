@@ -1,8 +1,13 @@
-<h1><%= @post.title %></h1>
+<div class='post' id='post-<%= @post.id %>'>
+
+<%= render 'votes', post: @post %>
+
+<h1 id='post-title'><%= @post.title %></h1>
 <p>
 	<%= @post.body %>
 </p>
-
+</div>
+<div id='comments'>
 <h2>Comments</h2>
 <% item_comments(@post).each do |comment| %>
 	<p>
@@ -15,3 +20,4 @@
 <%= link_to 'Delete', post_path(@post), method: :delete %>
 
 <%= link_to 'New Comment', new_post_comment_path(@post) %>
+</div>
